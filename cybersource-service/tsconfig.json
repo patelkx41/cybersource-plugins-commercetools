@@ -29,7 +29,7 @@
     "pretty": true /* Stylize errors and messages using color and context. */,
 
     "lib": ["es2017", "dom"],
-    "types": ["node"],
+    "types": ["node","trusted-types"],
     "typeRoots": ["node_modules/@types", "src/types"]
   },
   "include": ["src/**/*.ts"],

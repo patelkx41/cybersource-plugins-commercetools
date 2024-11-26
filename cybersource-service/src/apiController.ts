@@ -3,7 +3,7 @@ import { CustomMessages } from './constants/customMessages';
 import captureContext from './service/payment/CaptureContextService';
 import flexKeys from './service/payment/FlexKeys';
 import getCardByInstrument from './service/payment/GetCardByInstrumentId';
-import keyVerification from './service/payment/GetPublicKeys';
+import keyVerification from './service/payment/getPublicKeys';
 import { ActionResponseType, PaymentTransactionType, PaymentType } from './types/Types';
 import paymentActions from './utils/PaymentActions';
 import paymentHandler from './utils/PaymentHandler';
@@ -13,7 +13,7 @@ import commercetoolsApi from './utils/api/CommercetoolsApi';
 import payerAuthHelper from './utils/helpers/PayerAuthHelper';
 /**
  * Handles the creation of payment.
- * 
+ *
  * @param {PaymentType} paymentObj - The payment object containing payment information.
  * @returns {Promise<ActionResponseType>} - A promise resolving to an action response type.
  */
@@ -31,7 +31,7 @@ const paymentCreateApi = async (paymentObj: PaymentType): Promise<ActionResponse
         } else {
           const microFormKeys = await flexKeys.getFlexKeys(paymentObj);
           if (microFormKeys?.isv_tokenCaptureContextSignature) {
-            response = paymentUtils.invalidOperationResponse();
+            //response = paymentUtils.invalidOperationResponse();
             const verifiedCaptureContext = await keyVerification.getPublicKeys(microFormKeys.isv_tokenCaptureContextSignature, paymentObj);
             if (verifiedCaptureContext) {
               const actions = paymentUtils.setCustomFieldMapper(microFormKeys);
@@ -61,7 +61,7 @@ const paymentCreateApi = async (paymentObj: PaymentType): Promise<ActionResponse
 };
 /**
  * Handles the update of a payment.
- * 
+ *
  * @param {PaymentType} paymentObj - The payment object containing payment information.
  * @returns {Promise<ActionResponseType>} - A promise resolving to an action response type.
  */
@@ -90,7 +90,7 @@ const paymentUpdateApi = async (paymentObj: PaymentType): Promise<ActionResponse
 };
 /**
  * Handles the update of a customer.
- * 
+ *
  * @param {any} customerObj - The customer object containing customer information.
  * @returns {Promise<ActionResponseType>} - A promise resolving to an action response type.
  */
@@ -131,7 +131,7 @@ const customerUpdateApi = async (customerObj: any): Promise<ActionResponseType> 
 };
 /**
  * Retrieves payment details and cart details via API.
- * 
+ *
  * @param {string} paymentId - The ID of the payment to retrieve details for.
  * @returns {Promise<{
 *   paymentId: string;
@@ -201,7 +201,7 @@ const paymentDetailsApi = async (paymentId: string) => {
 };
 /**
  * Handles the ordermanagement services for a payment.
- * 
+ *
  * @param {string} paymentId - The ID of the payment to manage transactions for.
  * @param {number | undefined} transactionAmount - The amount of the transaction.
  * @param {string} transactionType - The type of the transaction (charge, refund, or authorization reversal).
@@ -268,7 +268,7 @@ const orderManagementApi = async (paymentId: string, transactionAmount: number |
 };
 /**
  * Handles generation of capture context.
- * 
+ *
  * @param {object} requestObj - The request object containing either cart details or country, locale, and currency information.
  * @returns {Promise<string>} - A promise resolving to the capture context response.
  */
@@ -302,7 +302,7 @@ const captureContextApi = async (requestObj: any): Promise<string> => {
 };
 /**
  * Handles network token update notifications.
- * 
+ *
  * @param {object} notification - The notification object received.
  * @returns {Promise<{
 *   errorMessage: string;

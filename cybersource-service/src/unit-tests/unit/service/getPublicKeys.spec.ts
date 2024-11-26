@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 import keys from '../../../service/payment/FlexKeys';
-import getPublicKey from '../../../service/payment/GetPublicKeys';
+import getPublicKey from '../../../service/payment/getPublicKeys';
 import PaymentAuthorizationServiceConstCC from '../../const/CreditCard/PaymentAuthorizationServiceConstCC';
 import getPublicKeysConst from '../../const/getPublicKeysConst';
 
