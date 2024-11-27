@@ -13,7 +13,7 @@
     "tsc": "tsc",
     "start": "npm run build && node build/main/index.js",
     "deploy": "npm run build && serverless deploy",
-    "build": "npm install && npm run build && rimraf ./build && && copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.js src/**/*.png build/main",
+    "build": "npm install && npm run build && rimraf ./build && copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.js src/**/*.png build/main",
     "setup-resources": "npm run build && run-func ./build/main/setup.js setupExtensionResources",
     "create-subscription": "npm run build && run-func ./build/main/setup.js createWebhookSubscription",
     "build:main": "tsc -p tsconfig.json",
